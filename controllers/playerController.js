@@ -13,22 +13,15 @@ const getSinglePlayer = (request, response) => {
 };
 
 const addPlayer = (request, response) => {
-    db.Player.create({
-        firstName: request.body.firstName,
-        secondName: request.body.secondName
-    }).then(submittedRequest => response.send(submittedRequest));
+    db.Player.create(request.body).then(submittedRequest => response.send(submittedRequest));
 };
 
 const editPlayer = (request, response) =>{
-    db.Player.update(
-        {
-            firstName: request.body.firstName,
-            secondName: request.body.secondName
-        },
-        {
-            where: { id: request.params.id }
+    db.Player.update(request.body,{
+        where: { 
+            id: request.params.id 
         }
-    ).then(() => response.send('Update Successfuly'));
+    }).then(() => response.send('Update Successfuly'));
 };
 
 const deletePlayer = (request, response) => {
