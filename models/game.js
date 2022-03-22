@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             allowedNull: false
         },
         champion: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowedNull: false
         },
     });
@@ -17,4 +17,4 @@ module.exports = (sequelize, DataTypes) => {
         Game.belongsToMany(models.Player, {through: 'PlayerGame', foreignKey: 'gameID'})
     };
     return Game
-};
+}; 
