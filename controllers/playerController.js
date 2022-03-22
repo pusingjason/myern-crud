@@ -23,6 +23,14 @@ const getSinglePlayer = (request, response) => {
     }
 };
 
+const findPlayerExist = (request, response) => {
+    try{
+        db.Player.findByID(request.params.id).then(submittedRequest => response.send(submittedRequest));
+    }catch(error){
+        response.send(error);
+    }
+};
+
 const addPlayer = (request, response) => {
     try{
         db.Player.create(request.body).then(submittedRequest => response.send(submittedRequest));
@@ -58,6 +66,7 @@ const deletePlayer = (request, response) => {
 module.exports = {
     getPlayers,
     getSinglePlayer,
+    findPlayerExist,
     addPlayer,
     editPlayer,
     deletePlayer

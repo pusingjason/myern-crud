@@ -3,7 +3,8 @@ const router = express.Router();
 
 const { 
     getPlayers,
-    getSinglePlayer, 
+    getSinglePlayer,
+    findPlayerExist, 
     addPlayer,
     editPlayer,
     deletePlayer
@@ -11,5 +12,6 @@ const {
 
 router.route('/').get(getPlayers).post(addPlayer);
 router.route('/:id').get(getSinglePlayer).put(editPlayer).delete(deletePlayer);
+router.route('/find/:id').get(findPlayerExist);
 
 module.exports = router;
