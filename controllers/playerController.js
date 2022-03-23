@@ -23,9 +23,20 @@ const getSinglePlayer = (request, response) => {
     }
 };
 
-const findPlayerExist = (request, response) => {
+const getIDFullName = (request, response) => {
     try{
-        db.Player.findByID(request.params.id).then(submittedRequest => response.send(submittedRequest));
+        db.Player.findAll({
+            attributes: [fullName]
+        }).then(submittedRequest => response.send(submittedRequest));
+    }catch(error){
+        response.send(error);
+    }
+};
+
+const checkExistingPlayer = (request, response) => {
+    try{
+        const cha = db.Player.findByID(request.params.id).then(submittedRequest => response.send(submittedRequest));
+        console.log(cha);
     }catch(error){
         response.send(error);
     }
@@ -66,7 +77,8 @@ const deletePlayer = (request, response) => {
 module.exports = {
     getPlayers,
     getSinglePlayer,
-    findPlayerExist,
+    checkExistingPlayer,
+    getIDFullName,
     addPlayer,
     editPlayer,
     deletePlayer
